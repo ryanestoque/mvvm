@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,5 +25,14 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        List<SongList> items = new ArrayList<SongList>();
+        items.add(new SongList(R.drawable.one_time, "One Time", "Justin Bieber"));
+        items.add(new SongList(R.drawable.payphone, "Payphone", "Maroon 5"));
+        items.add(new SongList(R.drawable.fps, "First Person Shooter", "Drake, J.Cole"));
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new SongAdapter(getApplicationContext(),items));
     }
 }
